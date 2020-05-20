@@ -1,0 +1,9 @@
+hwloc:
+libnuma-dev
+libnuma1 
+libcairo2-dev
+libxml2
+
+libevent:
+libssl-dev
+flex
