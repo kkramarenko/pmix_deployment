@@ -27,33 +27,31 @@ old_env_path = os.environ['PATH']
 max_nodes = 28
 deploy_dir_name = 'deploy'
 abs_path_name = os.path.abspath(os.getcwd()) + '/' + deploy_dir_name
-base_dir_name = 'euro2018_base/'
-ompi_base = abs_path_name + '/install/openmpi_base'
-pmix_base = 'pmix_base'
+base_dir_name = 'euro2018_master/'
+ompi_base = abs_path_name + '/install/openmpi_master'
+pmix_base = 'pmix_master'
 pmix_base_run = abs_path_name + '/sources/' + pmix_base + '/contrib/perf_tools/'
 pmix_base_lib = abs_path_name + '/install/' + pmix_base + '/lib'
 run_test(ompi_base, pmix_base_run, pmix_base_lib, base_dir_name, max_nodes)
 
-base_dir_name = 'euro2018_poc/'
-ompi_base = abs_path_name + '/install/openmpi_poc'
-pmix_base = 'pmix_poc'
-pmix_base_run = abs_path_name + '/sources/' + pmix_base + '/contrib/perf_tools/'
-pmix_base_lib = abs_path_name + '/install/' + pmix_base + '/lib'
-run_test(ompi_base, pmix_base_run, pmix_base_lib, base_dir_name, max_nodes)
+#base_dir_name = 'euro2018_poc/'
+#ompi_base = abs_path_name + '/install/openmpi_poc'
+#pmix_base = 'pmix_poc'
+#pmix_base_run = abs_path_name + '/sources/' + pmix_base + '/contrib/perf_tools/'
+#pmix_base_lib = abs_path_name + '/install/' + pmix_base + '/lib'
+#run_test(ompi_base, pmix_base_run, pmix_base_lib, base_dir_name, max_nodes)
 
-base_dir_name = 'euro2018_poc_base/'
-ompi_base = abs_path_name + '/install/openmpi_poc_base'
-pmix_base = 'pmix_poc_base'
-pmix_base_run = abs_path_name + '/sources/' + pmix_base + '/contrib/perf_tools/'
-pmix_base_lib = abs_path_name + '/install/' + pmix_base + '/lib'
-run_test(ompi_base, pmix_base_run, pmix_base_lib, base_dir_name, max_nodes)
+#base_dir_name = 'euro2018_poc_base/'
+#ompi_base = abs_path_name + '/install/openmpi_poc_base'
+#pmix_base = 'pmix_poc_base'
+#pmix_base_run = abs_path_name + '/sources/' + pmix_base + '/contrib/perf_tools/'
+#pmix_base_lib = abs_path_name + '/install/' + pmix_base + '/lib'
+#run_test(ompi_base, pmix_base_run, pmix_base_lib, base_dir_name, max_nodes)
 
-base_dir_name = 'euro2018_poc_base_lockless/'
-ompi_base = abs_path_name + '/install/openmpi_poc_base_lockless'
-pmix_base = 'pmix_poc_base_lockless'
-pmix_base_run = abs_path_name + '/sources/' + pmix_base + '/contrib/perf_tools/'
-pmix_base_lib = abs_path_name + '/install/' + pmix_base + '/lib'
-run_test(ompi_base, pmix_base_run, pmix_base_lib, base_dir_name, max_nodes)
-
-
+#base_dir_name = 'euro2018_poc_base_lockless/'
+#ompi_base = abs_path_name + '/install/openmpi_poc_base_lockless'
+#pmix_base = 'pmix_poc_base_lockless'
+#pmix_base_run = abs_path_name + '/sources/' + pmix_base + '/contrib/perf_tools/'
+#pmix_base_lib = abs_path_name + '/install/' + pmix_base + '/lib'
+#run_test(ompi_base, pmix_base_run, pmix_base_lib, base_dir_name, max_nodes)
 

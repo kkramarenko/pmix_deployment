@@ -335,11 +335,15 @@ def openmpi_install_routine(openmpi_dir_name):
 
 
 def main(base_dir_name, thread_num):
-    needed_dirs = ['hwloc', 'libevent', 
-                   'pmix_base', 'pmix_poc','pmix_poc_base',
-                   'pmix_poc_base_lockless','openmpi_base',
-                   'openmpi_poc', 'openmpi_poc_base',
-                   'openmpi_poc_base_lockless']
+#    needed_dirs = ['hwloc', 'libevent', 
+#                   'pmix_base', 'pmix_poc','pmix_poc_base',
+#                   'pmix_poc_base_lockless','openmpi_base',
+#                   'openmpi_poc', 'openmpi_poc_base',
+#                   'openmpi_poc_base_lockless']
+
+    needed_dirs = ['hwloc_master', 'libevent_master', 
+                   'pmix_master','openmpi_master',]
+
 
     needed_dirs_name = ''
     for name in needed_dirs:
@@ -347,16 +351,16 @@ def main(base_dir_name, thread_num):
 
     create_directories(base_dir_name, needed_dirs_name)
     
-    hwloc_dir_name = 'hwloc'
+    hwloc_dir_name = 'hwloc_master'
     hwloc_git_url = 'https://github.com/open-mpi/hwloc.git'
-    hwloc_branch_name = 'hwloc-1.11.1'
+    hwloc_branch_name = ''
     hwloc_conf_param = '--prefix=' + abs_path_name + '/install/' + hwloc_dir_name
     hwloc_get_sources_routine(hwloc_dir_name, hwloc_git_url, hwloc_branch_name)
     hwloc_conf_routine(hwloc_dir_name, hwloc_conf_param)
     hwloc_compile_routine(hwloc_dir_name, thread_num)
     hwloc_install_routine(hwloc_dir_name)
 
-    libevent_dir_name = 'libevent'
+    libevent_dir_name = 'libevent_master'
     libevent_git_url = 'https://github.com/libevent/libevent.git'
     libevent_branch_name = ''
     libevent_conf_param = '--prefix=' + abs_path_name + '/install/' + libevent_dir_name
@@ -365,9 +369,9 @@ def main(base_dir_name, thread_num):
     libevent_compile_routine(libevent_dir_name, thread_num)
     libevent_install_routine(libevent_dir_name)
 
-    pmix_dir_name = 'pmix_base'
-    pmix_git_url = 'https://github.com/artpol84/pmix.git'
-    pmix_branch_name = 'origin/eurompi2018/base'
+    pmix_dir_name = 'pmix_master'
+    pmix_git_url = 'https://github.com/openpmix/openpmix.git'
+    pmix_branch_name = 'v3.1.5'
     pmix_conf_param = '--disable-debug --with-libevent=' + abs_path_name + '/install/' + libevent_dir_name
     pmix_conf_param += ' --prefix=' + abs_path_name + '/install/' + pmix_dir_name 
     pmix_get_sources_routine(pmix_dir_name, pmix_git_url, pmix_branch_name)
@@ -375,9 +379,9 @@ def main(base_dir_name, thread_num):
     pmix_compile_routine(pmix_dir_name, thread_num)
     pmix_install_routine(pmix_dir_name)
     
-    openmpi_dir_name = 'openmpi_base'
+    openmpi_dir_name = 'openmpi_master'
     openmpi_git_url = 'https://github.com/open-mpi/ompi.git'
-    openmpi_branch_name = 'v3.0.3'
+    openmpi_branch_name = 'v4.0.3'
     openmpi_conf_param = '--disable-debug --prefix=' + abs_path_name + '/install/' + openmpi_dir_name
     openmpi_conf_param += ' --with-hwloc=' + abs_path_name + '/install/' + hwloc_dir_name
     openmpi_conf_param += ' --with-libevent=' + abs_path_name + '/install/' + libevent_dir_name
@@ -387,71 +391,71 @@ def main(base_dir_name, thread_num):
     openmpi_compile_routine(openmpi_dir_name, thread_num)
     openmpi_install_routine(openmpi_dir_name)
 
-    pmix_dir_name = 'pmix_poc'
-    pmix_git_url = 'https://github.com/artpol84/pmix.git'
-    pmix_branch_name = 'origin/eurompi2018/poc'
-    pmix_conf_param = '--disable-debug --with-libevent=' + abs_path_name + '/install/' + libevent_dir_name
-    pmix_conf_param += ' --prefix=' + abs_path_name + '/install/' + pmix_dir_name 
-    pmix_get_sources_routine(pmix_dir_name, pmix_git_url, pmix_branch_name)
-    pmix_conf_routine(pmix_dir_name, pmix_conf_param)
-    pmix_compile_routine(pmix_dir_name, thread_num)
-    pmix_install_routine(pmix_dir_name)
+    #pmix_dir_name = 'pmix_poc'
+    #pmix_git_url = 'https://github.com/artpol84/pmix.git'
+    #pmix_branch_name = 'origin/eurompi2018/poc'
+    #pmix_conf_param = '--disable-debug --with-libevent=' + abs_path_name + '/install/' + libevent_dir_name
+    #pmix_conf_param += ' --prefix=' + abs_path_name + '/install/' + pmix_dir_name 
+    #pmix_get_sources_routine(pmix_dir_name, pmix_git_url, pmix_branch_name)
+    #pmix_conf_routine(pmix_dir_name, pmix_conf_param)
+    #pmix_compile_routine(pmix_dir_name, thread_num)
+    #pmix_install_routine(pmix_dir_name)
     
-    openmpi_dir_name = 'openmpi_poc'
-    openmpi_git_url = 'https://github.com/open-mpi/ompi.git'
-    openmpi_branch_name = 'v3.0.3'
-    openmpi_conf_param = '--disable-debug --prefix=' + abs_path_name + '/install/' + openmpi_dir_name
-    openmpi_conf_param += ' --with-hwloc=' + abs_path_name + '/install/' + hwloc_dir_name
-    openmpi_conf_param += ' --with-libevent=' + abs_path_name + '/install/' + libevent_dir_name
-    openmpi_conf_param += ' --with-pmix=' + abs_path_name + '/install/' + pmix_dir_name
-    openmpi_get_sources_routine(openmpi_dir_name, openmpi_git_url, openmpi_branch_name)
-    openmpi_conf_routine(openmpi_dir_name, openmpi_conf_param)
-    openmpi_compile_routine(openmpi_dir_name, thread_num)
-    openmpi_install_routine(openmpi_dir_name)
+    #openmpi_dir_name = 'openmpi_poc'
+    #openmpi_git_url = 'https://github.com/open-mpi/ompi.git'
+    #openmpi_branch_name = 'v3.0.3'
+    #openmpi_conf_param = '--disable-debug --prefix=' + abs_path_name + '/install/' + openmpi_dir_name
+    #openmpi_conf_param += ' --with-hwloc=' + abs_path_name + '/install/' + hwloc_dir_name
+    #openmpi_conf_param += ' --with-libevent=' + abs_path_name + '/install/' + libevent_dir_name
+    #openmpi_conf_param += ' --with-pmix=' + abs_path_name + '/install/' + pmix_dir_name
+    #openmpi_get_sources_routine(openmpi_dir_name, openmpi_git_url, openmpi_branch_name)
+    #openmpi_conf_routine(openmpi_dir_name, openmpi_conf_param)
+    #openmpi_compile_routine(openmpi_dir_name, thread_num)
+    #openmpi_install_routine(openmpi_dir_name)
 
-    pmix_dir_name = 'pmix_poc_base'
-    pmix_git_url = 'https://github.com/artpol84/pmix.git'
-    pmix_branch_name = 'origin/eurompi2018/poc_base'
-    pmix_conf_param = '--disable-debug --with-libevent=' + abs_path_name + '/install/' + libevent_dir_name
-    pmix_conf_param += ' --prefix=' + abs_path_name + '/install/' + pmix_dir_name 
-    pmix_get_sources_routine(pmix_dir_name, pmix_git_url, pmix_branch_name)
-    pmix_conf_routine(pmix_dir_name, pmix_conf_param)
-    pmix_compile_routine(pmix_dir_name, thread_num)
-    pmix_install_routine(pmix_dir_name)
+    #pmix_dir_name = 'pmix_poc_base'
+    #pmix_git_url = 'https://github.com/artpol84/pmix.git'
+    #pmix_branch_name = 'origin/eurompi2018/poc_base'
+    #pmix_conf_param = '--disable-debug --with-libevent=' + abs_path_name + '/install/' + libevent_dir_name
+    #pmix_conf_param += ' --prefix=' + abs_path_name + '/install/' + pmix_dir_name 
+    #pmix_get_sources_routine(pmix_dir_name, pmix_git_url, pmix_branch_name)
+    #pmix_conf_routine(pmix_dir_name, pmix_conf_param)
+    #pmix_compile_routine(pmix_dir_name, thread_num)
+    #pmix_install_routine(pmix_dir_name)
     
-    openmpi_dir_name = 'openmpi_poc_base'
-    openmpi_git_url = 'https://github.com/open-mpi/ompi.git'
-    openmpi_branch_name = 'v3.0.3'
-    openmpi_conf_param = '--disable-debug --prefix=' + abs_path_name + '/install/' + openmpi_dir_name
-    openmpi_conf_param += ' --with-hwloc=' + abs_path_name + '/install/' + hwloc_dir_name
-    openmpi_conf_param += ' --with-libevent=' + abs_path_name + '/install/' + libevent_dir_name
-    openmpi_conf_param += ' --with-pmix=' + abs_path_name + '/install/' + pmix_dir_name
-    openmpi_get_sources_routine(openmpi_dir_name, openmpi_git_url, openmpi_branch_name)
-    openmpi_conf_routine(openmpi_dir_name, openmpi_conf_param)
-    openmpi_compile_routine(openmpi_dir_name, thread_num)
-    openmpi_install_routine(openmpi_dir_name)
+    #openmpi_dir_name = 'openmpi_poc_base'
+    #openmpi_git_url = 'https://github.com/open-mpi/ompi.git'
+    #openmpi_branch_name = 'v3.0.3'
+    #openmpi_conf_param = '--disable-debug --prefix=' + abs_path_name + '/install/' + openmpi_dir_name
+    #openmpi_conf_param += ' --with-hwloc=' + abs_path_name + '/install/' + hwloc_dir_name
+    #openmpi_conf_param += ' --with-libevent=' + abs_path_name + '/install/' + libevent_dir_name
+    #openmpi_conf_param += ' --with-pmix=' + abs_path_name + '/install/' + pmix_dir_name
+    #openmpi_get_sources_routine(openmpi_dir_name, openmpi_git_url, openmpi_branch_name)
+    #openmpi_conf_routine(openmpi_dir_name, openmpi_conf_param)
+    #openmpi_compile_routine(openmpi_dir_name, thread_num)
+    #openmpi_install_routine(openmpi_dir_name)
 
-    pmix_dir_name = 'pmix_poc_base_lockless'
-    pmix_git_url = 'https://github.com/artpol84/pmix.git'
-    pmix_branch_name = 'origin/eurompi2018/poc_base_lockless'
-    pmix_conf_param = '--disable-debug --with-libevent=' + abs_path_name + '/install/' + libevent_dir_name
-    pmix_conf_param += ' --prefix=' + abs_path_name + '/install/' + pmix_dir_name 
-    pmix_get_sources_routine(pmix_dir_name, pmix_git_url, pmix_branch_name)
-    pmix_conf_routine(pmix_dir_name, pmix_conf_param)
-    pmix_compile_routine(pmix_dir_name, thread_num)
-    pmix_install_routine(pmix_dir_name)
+    #pmix_dir_name = 'pmix_poc_base_lockless'
+    #pmix_git_url = 'https://github.com/artpol84/pmix.git'
+    #pmix_branch_name = 'origin/eurompi2018/poc_base_lockless'
+    #pmix_conf_param = '--disable-debug --with-libevent=' + abs_path_name + '/install/' + libevent_dir_name
+    #pmix_conf_param += ' --prefix=' + abs_path_name + '/install/' + pmix_dir_name 
+    #pmix_get_sources_routine(pmix_dir_name, pmix_git_url, pmix_branch_name)
+    #pmix_conf_routine(pmix_dir_name, pmix_conf_param)
+    #pmix_compile_routine(pmix_dir_name, thread_num)
+    #pmix_install_routine(pmix_dir_name)
     
-    openmpi_dir_name = 'openmpi_poc_base_lockless'
-    openmpi_git_url = 'https://github.com/open-mpi/ompi.git'
-    openmpi_branch_name = 'v3.0.3'
-    openmpi_conf_param = '--disable-debug --prefix=' + abs_path_name + '/install/' + openmpi_dir_name
-    openmpi_conf_param += ' --with-hwloc=' + abs_path_name + '/install/' + hwloc_dir_name
-    openmpi_conf_param += ' --with-libevent=' + abs_path_name + '/install/' + libevent_dir_name
-    openmpi_conf_param += ' --with-pmix=' + abs_path_name + '/install/' + pmix_dir_name
-    openmpi_get_sources_routine(openmpi_dir_name, openmpi_git_url, openmpi_branch_name)
-    openmpi_conf_routine(openmpi_dir_name, openmpi_conf_param)
-    openmpi_compile_routine(openmpi_dir_name, thread_num)
-    openmpi_install_routine(openmpi_dir_name)
+    #openmpi_dir_name = 'openmpi_poc_base_lockless'
+    #openmpi_git_url = 'https://github.com/open-mpi/ompi.git'
+    #openmpi_branch_name = 'v3.0.3'
+    #openmpi_conf_param = '--disable-debug --prefix=' + abs_path_name + '/install/' + openmpi_dir_name
+    #openmpi_conf_param += ' --with-hwloc=' + abs_path_name + '/install/' + hwloc_dir_name
+    #openmpi_conf_param += ' --with-libevent=' + abs_path_name + '/install/' + libevent_dir_name
+    #openmpi_conf_param += ' --with-pmix=' + abs_path_name + '/install/' + pmix_dir_name
+    #openmpi_get_sources_routine(openmpi_dir_name, openmpi_git_url, openmpi_branch_name)
+    #openmpi_conf_routine(openmpi_dir_name, openmpi_conf_param)
+    #openmpi_compile_routine(openmpi_dir_name, thread_num)
+    #openmpi_install_routine(openmpi_dir_name)
 
 
 if __name__ == '__main__':
