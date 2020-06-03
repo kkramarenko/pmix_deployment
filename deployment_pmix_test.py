@@ -370,8 +370,8 @@ def main(base_dir_name, thread_num):
     libevent_install_routine(libevent_dir_name)
 
     pmix_dir_name = 'pmix_master'
-    pmix_git_url = 'https://github.com/openpmix/openpmix.git'
-    pmix_branch_name = 'v3.1.5'
+    pmix_git_url = 'https://github.com/kkramarenko/openpmix.git'
+    pmix_branch_name = 'get_without_malloc_v2'
     pmix_conf_param = '--disable-debug --with-libevent=' + abs_path_name + '/install/' + libevent_dir_name
     pmix_conf_param += ' --prefix=' + abs_path_name + '/install/' + pmix_dir_name 
     pmix_get_sources_routine(pmix_dir_name, pmix_git_url, pmix_branch_name)
