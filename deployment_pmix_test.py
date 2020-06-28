@@ -371,7 +371,7 @@ def main(base_dir_name, thread_num):
 
     pmix_dir_name = 'pmix_v315'
     pmix_git_url = 'https://github.com/kkramarenko/openpmix.git'
-    pmix_branch_name = 'mallocless_v315'
+    pmix_branch_name = 'time_stamps_v315'
     pmix_conf_param = '--disable-debug --with-libevent=' + abs_path_name + '/install/' + libevent_dir_name
     pmix_conf_param += ' --prefix=' + abs_path_name + '/install/' + pmix_dir_name 
     pmix_get_sources_routine(pmix_dir_name, pmix_git_url, pmix_branch_name)
