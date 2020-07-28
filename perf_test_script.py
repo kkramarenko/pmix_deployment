@@ -10,8 +10,8 @@ def run_test(ompi_base, pmix_base_run, pmix_base_lib, base_dir_name, max_nodes):
     print(os.environ['PATH'], os.environ['LD_LIBRARY_PATH'])
 
     key_length = 50
-    key_count = 100
-    iter = 6
+    key_count = 5
+    iter = 50
     for np in range(2, max_nodes + 1, 2):
         dir_name = str(key_length) + '_' + str(key_count) + '_' + str(np)
     
