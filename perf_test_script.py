@@ -25,11 +25,11 @@ def run_test(ompi_base, pmix_base_run, pmix_base_lib, base_dir_name, max_nodes):
 #    	    os.remove(filename+'.1.' + str(idy))
 
 old_env_path = os.environ['PATH']
-max_nodes = 28
+max_nodes = 8
 deploy_dir_name = 'deploy'
 abs_path_name = os.path.abspath(os.getcwd()) + '/' + deploy_dir_name
-base_dir_name = 'v315/'
-ompi_base = abs_path_name + '/install/openmpi_v403'
+base_dir_name = 'v315_3/'
+ompi_base = abs_path_name + '/install/ompi_v403'
 pmix_base = 'pmix_v315'
 pmix_base_run = abs_path_name + '/sources/' + pmix_base + '/contrib/perf_tools/'
 pmix_base_lib = abs_path_name + '/install/' + pmix_base + '/lib'
